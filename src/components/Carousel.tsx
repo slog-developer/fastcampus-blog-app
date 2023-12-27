@@ -8,7 +8,7 @@ const IMAGE_3_URL =
   "https://images.unsplash.com/photo-1678874968498-20e305bafc1e?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 export default function Carousel() {
   const [activeImage, setActiveImage] = useState(1);
-  console.log(activeImage);
+
   return (
     <div>
       <div className="carosel">
