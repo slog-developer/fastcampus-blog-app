@@ -181,6 +181,3 @@ export default function PostForm() {
     </form>
   );
 }
-function async() {
-  throw new Error("Function not implemented.");
-}
