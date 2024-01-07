@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 
 interface CommentsProps {
   post: PostProps;
+  getPost: (id: string) => Promise<void>;
 }
 
-export default function Comments({ post }: CommentsProps) {
+export default function Comments({ post, getPost }: CommentsProps) {
   const [comment, setComment] = useState("");
   const { user } = useContext(AuthContext);
 
@@ -50,6 +51,8 @@ export default function Comments({ post }: CommentsProps) {
               second: "2-digit",
             }),
           });
+          // 문서 업데이트
+          await getPost(post.id);
         }
       }
       toast.success("댓글을 생성하였습니다.");
@@ -78,14 +81,19 @@ export default function Comments({ post }: CommentsProps) {
         </div>
       </form>
       <div className="comments__list">
-        <div className="comment__box">
-          <div className="comment__profile-box">
-            <div className="comment__email">{"asdfasdf"}</div>
-            <div className="comment__date">{"asdzxcvzxcv"}</div>
-            <div className="comment__delete">삭제</div>
-          </div>
-          <div className="comment__text">댓글내용</div>
-        </div>
+        {post?.comments
+          ?.slice(0)
+          ?.reverse()
+          .map((comment) => (
+            <div className="comment__box" key={comment.createdAt}>
+              <div className="comment__profile-box">
+                <div className="comment__email">{comment?.email}</div>
+                <div className="comment__date">{comment?.createdAt}</div>
+                <div className="comment__delete">삭제</div>
+              </div>
+              <div className="comment__text">{comment?.content}</div>
+            </div>
+          ))}
       </div>
     </div>
   );
