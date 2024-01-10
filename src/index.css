@@ -585,6 +585,7 @@ input:checked + .carousel__slide-container .nav label {
 .dark .post__title,
 .dark .post__author-name,
 .dark .footer__theme-btn,
+.dark .profile__email,
 .dark .profile__name,
 .dark .comments__list {
   color: white;
